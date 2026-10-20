@@ -1,0 +1,87 @@
+footer{
+background:#ffffff;
+border-top:1px solid #e2e8f0;
+padding:70px 50px 40px;
+margin-top:50px;
+overflow:hidden;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:40px;
+}
+
+.footer-logo{
+width:180px;
+margin-bottom:20px;
+max-width:100%;
+cursor:pointer;
+}
+
+.footer-text{
+color:#64748b;
+line-height:1.8;
+max-width:320px;
+}
+
+.footer-col h4{
+margin-bottom:20px;
+font-size:20px;
+}
+
+.footer-col a{
+display:block;
+margin-bottom:12px;
+color:#64748b;
+text-decoration:none;
+transition:.3s;
+word-break:break-word;
+}
+
+.footer-col a:hover{
+color:#2563eb;
+}
+
+.copy{
+margin-top:50px;
+padding-top:25px;
+border-top:1px solid #e2e8f0;
+text-align:center;
+color:#64748b;
+line-height:1.7;
+}
+
+/* TABLET */
+
+@media(max-width:900px){
+
+.topbar{
+padding:18px 20px;
+height:auto;
+flex-direction:column;
+gap:18px;
+}
+
+.top-links{
+gap:18px;
+}
+
+.footer-grid{
+grid-template-columns:1fr 1fr;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.dropdown-content{
+right:50%;
+transform:translate(50%,12px);
+}
+
+.login-dropdown.active .dropdown-content{
+transform:translate(50%,0);
+}
+
+}

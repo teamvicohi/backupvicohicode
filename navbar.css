@@ -1,0 +1,293 @@
+/* =====================
+   NAVBAR CSS - FINAL FIXED VERSION
+   NO CONFLICT WITH PAGE DROPDOWNS
+===================== */
+
+.topbar{
+height:60px;
+background:rgba(255,255,255,0.92);
+border-bottom:1px solid #e2e8f0;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 40px;
+position:sticky;
+top:0;
+z-index:999;
+backdrop-filter:blur(14px);
+box-shadow:0 4px 20px rgba(2, 16, 167, 0.03);
+gap:20px;
+}
+
+/* LEFT LOGO */
+.nav-left{
+display:flex;
+align-items:center;
+flex-shrink:0;
+}
+
+.nav-left a{
+display:flex;
+align-items:center;
+text-decoration:none;
+}
+
+.nav-logo{
+height:48px;
+width:auto;
+object-fit:contain;
+display:block;
+cursor:pointer;
+}
+
+/* CENTER LINKS */
+.top-links{
+display:flex;
+align-items:center;
+gap:28px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.top-links a{
+text-decoration:none;
+color:#334155;
+font-weight:700;
+font-size:16px;
+transition:.3s;
+position:relative;
+white-space:nowrap;
+}
+
+.top-links a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-10px;
+width:0;
+height:3px;
+background:#2563eb;
+border-radius:10px;
+transition:.3s;
+}
+
+.top-links a:hover{
+color:#2563eb;
+}
+
+.top-links a:hover::after{
+width:100%;
+}
+
+/* LOGIN BUTTON */
+.login-dropdown{
+position:relative;
+flex-shrink:0;
+}
+
+.login-btn{
+background:linear-gradient(135deg,#2563eb,#14b8a6);
+color:#fff;
+padding:12px 20px;
+border:none;
+border-radius:12px;
+font-weight:700;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+font-size:14px;
+transition:.3s;
+box-shadow:0 10px 25px rgba(37,99,235,0.25);
+min-width:130px;
+}
+
+.login-btn:hover{
+transform:translateY(-2px);
+}
+
+/* =====================
+   IMPORTANT FIX (SCOPED DROPDOWN)
+   ONLY NAVBAR DROPDOWN AFFECTED
+===================== */
+
+.login-dropdown .dropdown-content{
+position:absolute;
+right:0;
+top:70px;
+background:#fff;
+width:270px;
+max-width:calc(100vw - 30px);
+border-radius:18px;
+border:1px solid #e2e8f0;
+padding:14px;
+display:flex;
+flex-direction:column;
+gap:10px;
+box-shadow:0 20px 45px rgba(0,0,0,0.10);
+
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transform:translateY(10px);
+transition:all .25s ease;
+z-index:9999;
+}
+
+.login-dropdown.active .dropdown-content{
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+transform:translateY(0);
+}
+
+.dropdown-content a{
+text-decoration:none;
+padding:14px 16px;
+border-radius:12px;
+font-weight:700;
+color:#0f172a;
+background:#f8fafc;
+transition:.3s;
+display:flex;
+align-items:center;
+gap:10px;
+font-size:14px;
+word-break:break-word;
+}
+
+.dropdown-content a:hover{
+background:#eff6ff;
+color:#2563eb;
+transform:translateX(4px);
+}
+
+.dropdown-content a i{
+font-size:18px;
+min-width:20px;
+flex-shrink:0;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+
+@media(max-width:900px){
+
+.topbar{
+padding:16px 20px;
+height:auto;
+flex-direction:column;
+gap:16px;
+}
+
+.top-links{
+gap:16px;
+}
+
+.login-dropdown .dropdown-content{
+right:50%;
+transform:translate(50%,10px);
+}
+
+.login-dropdown.active .dropdown-content{
+transform:translate(50%,0);
+}
+}
+
+@media(max-width:768px){
+
+.nav-logo{
+height:44px;
+}
+
+.top-links{
+width:100%;
+gap:12px;
+}
+
+.top-links a{
+font-size:14px;
+}
+
+.login-dropdown{
+width:100%;
+display:flex;
+justify-content:center;
+}
+
+.login-btn{
+width:100%;
+max-width:320px;
+}
+
+.login-dropdown .dropdown-content{
+position:absolute;
+top:68px;
+left:50%;
+right:auto;
+width:min(92vw,340px);
+transform:translate(-50%,10px);
+padding:14px;
+border-radius:16px;
+}
+
+.login-dropdown.active .dropdown-content{
+transform:translate(-50%,0);
+}
+
+.dropdown-content a{
+padding:12px;
+font-size:14px;
+}
+}
+
+@media(max-width:480px){
+
+.top-links{
+gap:10px;
+}
+
+.login-dropdown .dropdown-content{
+width:calc(100vw - 20px);
+}
+}
+/* ======================
+   TOOLS DROPDOWN
+====================== */
+
+.top-links .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.top-links .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    padding: 8px 0;
+    display: none;
+    z-index: 9999;
+}
+
+.top-links .dropdown-menu a {
+    display: block;
+    padding: 12px 18px;
+    text-decoration: none;
+    color: #333;
+    white-space: nowrap;
+}
+
+.top-links .dropdown-menu a:hover {
+    background: #f5f7ff;
+    color: #2563eb;
+}
+
+.top-links .dropdown:hover .dropdown-menu {
+    display: block;
+}
