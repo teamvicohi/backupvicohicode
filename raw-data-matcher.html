@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Excel & CSV Data Matching Tool | Find Matching Records Online | Vicohi</title>
+
+<!-- SEO META -->
+<meta name="description" content="Vicohi Raw Data Matcher helps you instantly find matching records in Excel and CSV files. Upload spreadsheets, paste raw data, and get instant matching results online.">
+<meta name="keywords" content="excel data matcher, csv matching tool, find matching data online, raw data matcher, excel lookup tool, vicohi tool">
+
+<link rel="canonical" href="https://vicohi.com/raw-data-matcher.html">
+
+<!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
+<meta property="og:title" content="Excel & CSV Data Matching Tool | Vicohi">
+<meta property="og:description" content="Upload Excel or CSV files and instantly find matching records with raw data. Fast, simple and free online tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vicohi.com/raw-data-matcher.html">
+<meta property="og:image" content="https://vicohi.com/raw-data-matcher-preview.webp">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Excel & CSV Data Matching Tool | Vicohi">
+<meta name="twitter:description" content="Find matching records from Excel and CSV files instantly using Vicohi Raw Data Matcher.">
+<meta name="twitter:image" content="https://vicohi.com/raw-data-matcher-preview.webp">
+
+<!-- FAVICON -->
+<link rel="icon" href="favicon.png">
+
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- LIBRARIES -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+<!-- STYLES -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="raw-data-matcher.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="components/navbar.css">
+
+</head>
+
+<body>
+<div id="navbar"></div>
+
+<div class="header">
+<h2> RAW DATA MATCHER</h2>
+</div>
+
+<div class="container">
+
+<div class="card flex">
+
+<div>
+
+<h4>📁 Upload CSV / Excel File</h4>
+
+<input type="file" id="fileInput" accept=".csv,.xlsx,.xls">
+
+<div id="fileStatus">No file selected</div>
+
+<div id="fileLoader">
+<div class="loader-dot"></div>
+<span id="loaderText">Processing huge file...</span>
+</div>
+
+<div id="fileReady">
+✅ File uploaded and indexed successfully.
+</div>
+
+</div>
+
+<div>
+
+<h4>📝 Paste Raw Data</h4>
+
+<textarea id="rawData" placeholder="Paste raw data here..."></textarea>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<button onclick="processData()">🔍 Analyze Data</button>
+
+<button onclick="setMode('all')" id="allBtn">📁 All Data</button>
+
+<button onclick="setMode('match')" id="matchBtn">🟢 Matched</button>
+
+<button onclick="setMode('nomatch')" id="noBtn">🔴 Not Matched</button>
+
+<div class="dropdown" id="copyDropdown">
+
+<button type="button" onclick="toggleDropdown(event,'copyDropdown')">
+📋 Copy Data ▼
+</button>
+
+<div class="dropdown-content">
+
+<button onclick="copyAll()">Copy All Data</button>
+
+<hr>
+
+<div id="colList"></div>
+
+<div id="selectedPreview" style="margin-top:8px;font-size:12px;">
+<b>Selected:</b> None
+</div>
+
+<button onclick="copySelected()">Copy Selected Columns</button>
+
+</div>
+
+</div>
+
+<div class="dropdown" id="exportDropdown">
+
+<button type="button" onclick="toggleDropdown(event,'exportDropdown')">
+📤 Export ▼
+</button>
+
+<div class="dropdown-content">
+
+<button onclick="exportCSV()">Export CSV</button>
+
+<button onclick="exportExcel()">Export Excel</button>
+
+</div>
+
+</div>
+
+<div id="messageBox"></div>
+
+<div class="search-box">
+
+<input type="text" id="searchInput" placeholder="Search any value from current data...">
+
+<button onclick="searchData()">🔍 Search</button>
+
+<button onclick="clearSearch()">❌ Clear Search</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="stats-box">
+
+<div class="stat-card">
+<div class="stat-title">Total Rows</div>
+<div class="stat-value" id="totalRows">0</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Total Columns</div>
+<div class="stat-value" id="totalColumns">0</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Raw Input Count</div>
+<div class="stat-value" id="rawCount">0</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Matched Rows</div>
+<div class="stat-value" id="matchedCount">0</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Not Matched Rows</div>
+<div class="stat-value" id="notMatchedCount">0</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div id="table" class="table-box"></div>
+
+<div class="pagination">
+
+<button class="page-btn" onclick="prevPage()">Prev</button>
+
+<span id="pageInfo"></span>
+
+<input type="number" id="gotoPageInput" class="goto-page" placeholder="Page No">
+
+<button class="page-btn" onclick="goToPage()">Go</button>
+
+<button class="page-btn" onclick="nextPage()">Next</button>
+
+</div>
+
+</div>
+
+</div>
+<!-- Instructions Section Start -->
+<div class="tool-instructions">
+    <h3>How to Use</h3>
+
+    <ol>
+        <li>Upload your Excel or CSV file using the file upload option. The file will be uploaded automatically.</li>
+
+        <li>Paste your records into the <strong>Paste Raw Data</strong> box. Enter the data that you believe exists in the uploaded file.</li>
+
+        <li>Click the <strong>🔍 Analyze Data</strong> button to start the matching process.</li>
+
+        <li>All matching records will be displayed in the results table below, along with their corresponding column details from the uploaded file.</li>
+
+        <li>Use the available actions to manage your results:
+            <ul>
+                <li><strong>📋 Copy Data ▼</strong> – Copy the complete results or copy data column-wise based on your requirements.</li>
+
+                <li><strong>📤 Export ▼</strong> – Download the matched records directly in your preferred format.</li>
+            </ul>
+        </li>
+    </ol>
+
+    <div class="important-note">
+        <h4>⚠️ Recommendation</h4>
+
+        <p>
+            For large datasets and the best possible performance, we recommend using
+            <strong>CSV (.csv)</strong> files whenever possible.
+        </p>
+
+        <p>
+            CSV files are processed faster and provide a smoother experience when working
+            with thousands of records.
+        </p>
+    </div>
+</div>
+<!-- Instructions Section End -->
+
+<div id="footer"></div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="firebase-config.js"></script>
+<script src="./js/common.js"></script>
+<script src="raw-data-matcher.js"></script>
+
+</body>
+</html>

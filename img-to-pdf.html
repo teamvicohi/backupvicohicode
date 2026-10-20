@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Image to PDF Pro | Convert Images to PDF Online | Vicohi</title>
+
+<!-- SEO META -->
+<meta name="description" content="Convert images to PDF online for free. Create single PDF or ZIP of multiple images instantly using Vicohi Image to PDF tool.">
+<meta name="keywords" content="image to pdf, jpg to pdf, png to pdf, convert images to pdf, vicohi image to pdf">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://vicohi.com/img-to-pdf.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Image to PDF Pro | Vicohi Tool">
+<meta property="og:description" content="Convert images into PDF files instantly or download as ZIP using Vicohi tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vicohi.com/img-to-pdf.html">
+<meta property="og:image" content="https://vicohi.com/favicon.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image to PDF Pro | Vicohi">
+<meta name="twitter:description" content="Free online image to PDF converter tool. Create single PDF or ZIP download.">
+<meta name="twitter:image" content="https://vicohi.com/favicon.png">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- CSS -->
+<link rel="stylesheet" href="img-to-pdf.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="components/navbar.css">
+
+<link rel="icon" href="favicon.png">
+</head>
+
+<body>
+
+<div id="navbar"></div>
+<div class="header">
+<h2>IMAGE TO PDF  </h2>
+<p>Stable One PDF + ZIP Multi PDF Solution</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h3>📤 Upload Images</h3>
+
+<input type="file" id="fileInput" multiple accept="image/*">
+
+<button onclick="openGallery()">➕ Add Images</button>
+<button onclick="start()">🚀 Start Processing</button>
+
+<div class="list" id="list"></div>
+
+<div class="modeBox hidden" id="modeBox">
+
+<h3>⚙️ Choose Mode</h3>
+
+<label>
+<input type="radio" name="mode" value="single" checked>
+🟢 One PDF (All Images in ONE Page)
+</label>
+
+<br><br>
+
+<label>
+<input type="radio" name="mode" value="zip">
+🔵 Separate PDFs (Download ZIP)
+</label>
+
+<br>
+
+<button onclick="generatePDF()">📥 Download</button>
+
+</div>
+
+</div>
+
+</div>
+<div id="footer"></div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="firebase-config.js"></script>
+<script src="./js/common.js"></script>
+<script src="img-to-pdf.js"></script>
+
+</body>
+</html>

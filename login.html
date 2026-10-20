@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Vicohi</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="login.css">
+
+<!-- Firebase CDN -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+</head>
+
+<body>
+
+<div class="bg-circle one"></div>
+<div class="bg-circle two"></div>
+
+<div class="login-box">
+
+<h2>Welcome Back</h2>
+<p>Login to continue to your dashboard</p>
+
+<!-- GOOGLE LOGIN -->
+<div class="social">
+<button type="button" onclick="googleLogin()">
+  <i class="fa-brands fa-google"></i> Continue with Google
+</button>
+</div>
+
+<!-- EMAIL LOGIN -->
+<div class="input-box">
+<input type="email" id="email" placeholder="Enter email">
+<input type="password" id="password" placeholder="Password">
+</div>
+
+<!-- FORGOT PASSWORD -->
+<div class="extra">
+<a href="#" onclick="forgotPassword()">Forgot password?</a>
+</div>
+
+<!-- LOGIN BUTTON -->
+<button type="button" onclick="loginUser()">Login</button>
+
+<!-- SIGNUP -->
+<div class="footer">
+Don't have an account? 
+<a href="#" onclick="signupUser()">Create account</a>
+</div>
+
+</div>
+
+<!-- Firebase Config + Logic -->
+<script src="login.js"></script>
+
+</body>
+</html>

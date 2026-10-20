@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Smart Duplicate Data Cleaner | Remove Duplicates Online | Vicohi</title>
+
+<meta name="description" content="Smart Duplicate Data Cleaner helps you remove duplicate rows from text data instantly. Clean, fast, and browser-based duplicate remover tool by Vicohi.">
+<meta name="keywords" content="data cleaner, duplicate remover, remove duplicates online, text cleaner tool, vicohi data cleaner">
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://vicohi.com/data-cleaner.html">
+
+<meta property="og:title" content="Smart Duplicate Data Cleaner | Vicohi">
+<meta property="og:description" content="Remove duplicate rows instantly and get clean unique data using Vicohi Data Cleaner tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vicohi.com/data-cleaner.html">
+<meta property="og:image" content="https://vicohi.com/favicon.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Smart Duplicate Data Cleaner | Vicohi">
+<meta name="twitter:description" content="Clean duplicate data instantly using Vicohi Data Cleaner tool.">
+<meta name="twitter:image" content="https://vicohi.com/favicon.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="components/navbar.css">
+<link rel="stylesheet" href="data-cleaner.css">
+
+<link rel="icon" href="favicon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Smart Duplicate Data Cleaner",
+  "url": "https://vicohi.com/data-cleaner.html",
+  "description": "Tool to remove duplicate rows and clean data instantly."
+}
+</script>
+
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<div class="bg1"></div>
+<div class="bg2"></div>
+
+<!-- HEADER -->
+<div class="page-header">
+    <div class="main-heading">
+        Smart Duplicate Data Cleaner
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="wrapper">
+
+    <!-- KPI -->
+    <div class="kpi-grid">
+
+        <div class="kpi">
+            <div class="kpi-title">📥 Total Input Rows</div>
+            <div class="kpi-value" id="inputRows">0</div>
+            <div class="kpi-sub">Duplicate input data</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-title">✅ Unique Rows</div>
+            <div class="kpi-value" id="uniqueRows">0</div>
+            <div class="kpi-sub">Clean unique data</div>
+        </div>
+
+        <div class="kpi">
+            <div class="kpi-title">🧹 Removed Duplicates</div>
+            <div class="kpi-value" id="removedRows">0</div>
+            <div class="kpi-sub">Duplicate rows found</div>
+        </div>
+
+    </div>
+
+
+    <!-- INPUT + OUTPUT -->
+    <div class="main-grid">
+
+        <!-- INPUT -->
+        <div class="box">
+
+            <div class="box-header">
+                <div class="box-title">📥 Duplicate Input Data</div>
+                <div class="count" id="inputCount">0 Rows</div>
+            </div>
+
+            <textarea
+                id="inputData"
+                placeholder="Paste duplicate records here..."
+            ></textarea>
+
+            <div class="actions">
+
+                <button
+                    class="action-btn primary"
+                    onclick="processData()">
+                    🔍 Find Duplicate
+                </button>
+
+                <button
+                    class="action-btn red"
+                    onclick="clearAll()">
+                    🗑️ Clear All
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CLEAN OUTPUT -->
+        <div class="box">
+
+            <div class="box-header">
+                <div class="box-title">✅ Clean Unique Data</div>
+                <div class="count" id="outputCount">0 Rows</div>
+            </div>
+
+            <textarea
+                id="outputData"
+                readonly
+                placeholder="Click Find Duplicate to show results"
+            ></textarea>
+
+            <div class="actions">
+
+                <button
+                    class="action-btn primary"
+                    onclick="copyOutput()">
+                    📋 Copy
+                </button>
+
+                <button
+                    class="action-btn green"
+                    onclick="exportExcel()">
+                    📊 Export Excel
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- DUPLICATE DATA SECTION -->
+    <div class="duplicate-box">
+
+        <div class="duplicate-header">
+
+            <div>
+                <div class="duplicate-title">
+                    🔁 Duplicate Data Found
+                </div>
+
+                <div class="duplicate-subtitle">
+                    These rows were removed from the clean data
+                </div>
+            </div>
+
+            <div class="duplicate-count" id="duplicateCount">
+                0 Duplicates
+            </div>
+
+        </div>
+
+
+        <textarea
+            id="duplicateData"
+            readonly
+            placeholder="Duplicate rows will appear here after processing..."
+        ></textarea>
+
+
+        <div class="duplicate-actions">
+
+            <button
+                class="action-btn duplicate-copy"
+                onclick="copyDuplicates()">
+                📋 Copy Duplicate Data
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="footer"></div>
+
+
+<!-- XLSX -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<!-- Config -->
+<script src="firebase-config.js"></script>
+
+<!-- Common -->
+<script src="./js/common.js"></script>
+
+<!-- Page Script -->
+<script src="data-cleaner.js"></script>
+
+</body>
+</html>

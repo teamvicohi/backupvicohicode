@@ -1,0 +1,221 @@
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Duplicate Finder Tool | Remove Excel & CSV Duplicates | Vicohi</title>
+
+<!-- SEO META -->
+<meta name="description" content="Vicohi Duplicate Finder helps you instantly find and remove duplicate rows from Excel and CSV files. Fast, secure, and browser-based data cleaning tool.">
+<meta name="keywords" content="duplicate finder, excel duplicate remover, csv duplicate finder, remove duplicates online, vicohi tool">
+
+<link rel="canonical" href="https://vicohi.com/duplicate-finder.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Vicohi Duplicate Finder Tool">
+<meta property="og:description" content="Remove duplicate rows from Excel and CSV files instantly using Vicohi Duplicate Finder Tool.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vicohi.com/duplicate-finder.html">
+<meta property="og:image" content="https://vicohi.com/duplicate-finder-preview.webp">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Vicohi Duplicate Finder Tool">
+<meta name="twitter:description" content="Find and remove duplicate rows from Excel and CSV files instantly.">
+<meta name="twitter:image" content="https://vicohi.com/duplicate-finder-preview.webp">
+
+<!-- LIBRARIES -->
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+<!-- STYLES -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="duplicate-finder.css">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="components/navbar.css">
+
+<link rel="icon" href="favicon.png">
+</head>
+
+<body>
+<div id="navbar"></div>
+<div class="page-title">DUPLICATE FINDER</div>
+
+
+<div class="file-info" id="fileInfo">
+📁 No file selected
+</div>
+
+<div class="toolbar">
+
+<div class="file-upload-box" id="dropZone">
+
+<h3>📂 Drag & Drop CSV / Excel File</h3>
+
+<label class="upload-btn" for="fileInput">
+📤 Choose File
+</label>
+
+<input type="file" id="fileInput" accept=".csv,.xlsx,.xls">
+
+<p>
+CSV / Excel File Only</p>
+
+</div>
+
+<button onclick="loadData()">🚀 LOAD FILE</button>
+
+<button id="dupBtn" class="mode-btn" onclick="toggleMode('dup')">
+🔁 Duplicates
+</button>
+
+<button id="uniqueBtn" class="mode-btn" onclick="toggleMode('unique')">
+✨ Unique
+</button>
+
+<button id="allBtn" class="mode-btn" onclick="toggleMode('all')">
+📑 All Data
+</button>
+
+<input type="text" id="searchInput" placeholder="🔍 Search...">
+
+<button onclick="manualSearch()">🔎 SEARCH</button>
+
+<select id="dataType">
+<option value="all">📑 All Data</option>
+<option value="dup">🔁 Duplicate Data</option>
+<option value="unique">✨ Unique Data</option>
+</select>
+
+<select id="formatType">
+<option value="csv">📄 CSV</option>
+<option value="excel">📗 Excel</option>
+</select>
+
+<button onclick="previewDownloadData()">👁️ DOWNLOAD PREVIEW</button>
+
+<button onclick="downloadData()">⬇️ DOWNLOAD</button>
+
+<input type="text" id="fileNameInput" placeholder="📁 File Name (Optional)">
+
+<button class="copy-all-btn" onclick="copyVisibleData()">
+📋 COPY ALL DATA
+</button>
+
+</div>
+
+<div class="stats-wrapper">
+
+<div class="stat-card">
+<div class="stat-title">Total Rows</div>
+<div class="stat-value" id="totalRows">0</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Total Columns</div>
+<div class="stat-value" id="totalColumns">0</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Duplicate Rows</div>
+<div class="stat-value" id="duplicateRows">0</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Duplicate Columns</div>
+<div class="stat-value" id="duplicateColumns">0</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Duplicate Accuracy</div>
+<div class="stat-value" id="duplicateAccuracy">0%</div>
+</div>
+
+</div>
+
+<div id="loader">
+
+<div class="loader-top">
+<span id="loadingFileName">Processing...</span>
+<span id="loadingPercent">0%</span>
+</div>
+
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+
+</div>
+
+<div class="status-msg" id="statusMessage"></div>
+
+<div id="previewContainer" class="preview-box"></div>
+
+<div id="mainTableSection">
+
+<div id="tableContainer"></div>
+
+<div class="pagination">
+
+<button onclick="prevPage()">⬅ Prev</button>
+
+<span id="pageInfo"></span>
+
+<button onclick="nextPage()">Next ➡</button>
+
+<div class="page-box">
+<input type="number" id="pageInput" placeholder="Page">
+<button onclick="goToPage()">Go</button>
+</div>
+
+</div>
+
+</div>
+<div class="tool-instructions">
+    <h3>How to Use</h3>
+
+    <ol>
+        <li>Upload your Excel or CSV file using the file upload option.</li>
+
+        <li>Click the <strong>Load File</strong> button to process the uploaded file.</li>
+
+        <li>The duplicate analysis results will appear in the table below.</li>
+
+        <li>Use the following filters to view the required records:
+            <ul>
+                <li>🔁 <strong>Duplicates</strong> – Displays only duplicate records.</li>
+                <li>✨ <strong>Unique</strong> – Displays only unique records.</li>
+                <li>📑 <strong>All Data</strong> – Displays the complete dataset.</li>
+            </ul>
+        </li>
+
+        <li>You can <strong>copy</strong> or <strong>download</strong> the currently displayed results at any time.</li>
+    </ol>
+
+    <div class="important-note">
+        <h4>Important</h4>
+
+        <p>
+            If you use the <strong>Download Preview</strong> feature and then wish to apply a different filter,
+            please upload the file again before filtering.
+        </p>
+
+        <p>
+            Applying new filters without re-uploading the file may cause the downloaded output to match
+            the previously generated download preview data instead of the newly selected filter results.
+        </p>
+    </div>
+</div>
+<!-- YAHAN BODY KA POORA HTML SAME RAHEGA -->
+<!-- <header> se lekar -->
+<!-- <div id="mainTableSection"> ... </div> tak -->
+
+<div id="footer"></div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="firebase-config.js"></script>
+<script src="./js/common.js"></script>
+<script src="duplicate-finder.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+/* =========================
+   REQUEST TOOL PAGE
+========================= */
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5f7fb;
+    margin:0;
+    padding:0;
+}
+
+/* PAGE WRAPPER */
+.request-page{
+    display:flex;
+    justify-content:center;
+    padding:60px 20px;
+}
+
+/* MAIN BOX */
+.request-box{
+    width:100%;
+    max-width:900px;
+    background:#fff;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* TITLE */
+.request-box h1{
+    text-align:center;
+    font-size:34px;
+    color:#0b3d91;
+    margin-bottom:10px;
+}
+
+.sub-text{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+    font-size:15px;
+}
+
+/* FORM */
+.request-form{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-bottom:30px;
+}
+
+/* INPUTS */
+.request-form input,
+.request-form textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:14px;
+    outline:none;
+    font-family:'Poppins',sans-serif;
+    transition:0.3s;
+    box-sizing:border-box;
+}
+
+/* FOCUS */
+.request-form input:focus,
+.request-form textarea:focus{
+    border-color:#0b3d91;
+    box-shadow:0 0 0 3px rgba(11,61,145,0.1);
+}
+
+/* TEXTAREA FIXED */
+.request-form textarea{
+    height:150px;
+    resize:none;
+    overflow:auto;
+}
+
+/* BUTTON */
+.request-form button{
+    padding:14px;
+    background:#0b3d91;
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+/* BUTTON HOVER */
+.request-form button:hover{
+    background:#1557c0;
+    transform:translateY(-2px);
+}
+
+/* INFO BOX */
+.info-box{
+    background:linear-gradient(135deg,#0b3d91,#1557c0);
+    color:#fff;
+    padding:30px;
+    border-radius:14px;
+    text-align:center;
+}
+
+.info-box h2{
+    margin-bottom:10px;
+    font-size:24px;
+}
+
+.info-box p{
+    font-size:15px;
+    line-height:1.6;
+    opacity:0.95;
+}
+
+.highlight{
+    margin-top:10px;
+    font-weight:600;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+    .request-box{
+        padding:25px;
+    }
+
+    .request-box h1{
+        font-size:26px;
+    }
+
+    .info-box{
+        padding:20px;
+    }
+}

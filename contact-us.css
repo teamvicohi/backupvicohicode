@@ -1,0 +1,211 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+    background:#f5f8ff;
+    color:#333;
+    line-height:1.7;
+    -webkit-text-size-adjust:100%;
+}
+
+/* HERO */
+
+.hero{
+    width:100%;
+    background:linear-gradient(135deg,#003DA6,#00C9A7);
+    color:#fff;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.hero h1{
+    font-size:clamp(28px,5vw,52px);
+    line-height:1.2;
+    margin-bottom:10px;
+    font-weight:700;
+}
+
+.hero p{
+    max-width:700px;
+    margin:0 auto;
+    font-size:clamp(14px,2vw,17px);
+    opacity:.95;
+}
+
+/* CONTAINER */
+
+.container{
+    width:100%;
+    max-width:900px;
+    margin:35px auto;
+    padding:0 20px;
+}
+
+/* CONTACT BOX */
+
+.contact-box{
+    background:#fff;
+    padding:40px;
+    border-radius:18px;
+    box-shadow:0 10px 40px rgba(0,0,0,.08);
+}
+
+/* FORM */
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-top:20px;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:13px 15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.2s;
+}
+
+input:focus,
+textarea:focus{
+    border-color:#003DA6;
+    box-shadow:0 0 0 3px rgba(0,61,166,.1);
+}
+
+textarea{
+    height:180px;
+    resize:none;
+    overflow-y:auto;
+}
+/* BUTTON */
+
+button{
+    background:#003DA6;
+    color:#fff;
+    border:none;
+    padding:13px 16px;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#002a75;
+}
+
+/* INFO */
+
+.info{
+    margin-top:25px;
+    color:#555;
+    font-size:14px;
+}
+
+.info p{
+    margin-bottom:8px;
+}
+
+/* TABLET */
+
+@media(max-width:768px){
+
+.hero{
+    padding:32px 16px;
+}
+
+.container{
+    margin:28px auto;
+    padding:0 16px;
+}
+
+.contact-box{
+    padding:28px;
+    border-radius:16px;
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+.hero{
+    padding:26px 14px;
+}
+
+.hero h1{
+    font-size:30px;
+    margin-bottom:8px;
+}
+
+.hero p{
+    font-size:14px;
+}
+
+.container{
+    margin:20px auto;
+    padding:0 12px;
+}
+
+.contact-box{
+    padding:20px 16px;
+    border-radius:14px;
+}
+
+input,
+textarea{
+    font-size:14px;
+    padding:12px;
+}
+
+button{
+    width:100%;
+    font-size:14px;
+    padding:12px;
+}
+
+.info{
+    font-size:13px;
+}
+
+}
+
+/* SMALL MOBILE */
+
+@media(max-width:360px){
+
+.hero{
+    padding:22px 12px;
+}
+
+.hero h1{
+    font-size:26px;
+}
+
+.contact-box{
+    padding:16px 14px;
+}
+
+input,
+textarea{
+    font-size:13px;
+}
+
+button{
+    font-size:13px;
+}
+
+}

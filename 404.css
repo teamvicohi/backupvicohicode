@@ -1,0 +1,132 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY */
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* CONTAINER */
+.container {
+    max-width: 650px;
+    width: 100%;
+    background: #ffffff;
+    padding: 50px 40px;
+    border-radius: 24px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* 404 NUMBER */
+.error-code {
+    font-size: 100px;
+    font-weight: 800;
+    color: #2563eb;
+    line-height: 1;
+}
+
+/* HEADING */
+.container h1 {
+    font-size: 34px;
+    margin: 20px 0 15px;
+}
+
+/* DESCRIPTION */
+.container p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #64748b;
+    margin-bottom: 35px;
+}
+
+/* BUTTONS */
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+/* PRIMARY BUTTON */
+.primary-btn {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* SECONDARY BUTTON */
+.secondary-btn {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.secondary-btn:hover {
+    background: #dbeafe;
+}
+
+/* QUICK LINKS */
+.quick-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.quick-links a {
+    text-decoration: none;
+    color: #64748b;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.quick-links a:hover {
+    color: #2563eb;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+    .container {
+        padding: 40px 25px;
+    }
+
+    .error-code {
+        font-size: 80px;
+    }
+
+    .container h1 {
+        font-size: 28px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .btn-group {
+        flex-direction: column;
+    }
+}
